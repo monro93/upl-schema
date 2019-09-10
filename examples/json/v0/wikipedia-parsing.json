@@ -1,0 +1,115 @@
+{
+    "metadata": {
+        "version": "0",
+        "schema": "json"
+    },
+    "parsers": [
+        {
+            "name": "wikipedia-parsing",
+            "url": "https://en.wikipedia.org/wiki/Parsing",
+            "headers": {
+                "accept": "text/html,application/xhtml+xml,application/xml"
+            },
+            "selectors": [
+                {
+                    "type": "css",
+                    "selector": "#firstHeading",
+                    "transformations": [
+                        {
+                            "type": "text"
+                        },
+                        {
+                            "type": "to-lower"
+                        },
+                        {
+                            "type": "decorate",
+                            "extra": {
+                                "value": "The title is $s"
+                            }
+                        }
+                    ],
+                    "output": "title-of-page"
+                },
+                {
+                    "type": "css",
+                    "selector": "#Parser_development_software",
+                    "selector-refinements": [
+                        {
+                            "type": "parent",
+                            "extra": {
+                                "selector": "h2"
+                            }
+                        },
+                        {
+                            "type": "next-sibling",
+                            "extra": {
+                                "selector": "div"
+                            }
+                        },
+                        {
+                            "type": "find",
+                            "extra": {
+                                "selector": "a[title='ANTLR']"
+                            }
+                        },
+                        {
+                            "type": "attr",
+                            "extra": {
+                                "selector": "href"
+                            }
+                        }
+                    ],
+                    "output": "antlr-url"
+                }
+            ]
+        },
+        {
+            "name": "antlr-parsing",
+            "depends-on": [
+                "wikipedia-parsing"
+            ],
+            "url": "$antlr-url",
+            "selectors": [
+                {
+                    "type": "text",
+                    "selector": "Written in",
+                    "selector-refinements": [
+                        {
+                            "type": "index",
+                            "extra": {
+                                "value": 0
+                            }
+                        },
+                        {
+                            "type": "next-sibling",
+                            "extra": {
+                                "selector": "td"
+                            }
+                        }
+                    ],
+                    "transformations" : [
+                        {
+                            "type" : "text"
+                        },
+                        {
+                            "type" : "regexp-replacement",
+                            "extra": {
+                                "delimiter": "/",
+                                "regexp": "J([a-z]*)",
+                                "replacement": " $1"
+                            }
+                        }
+                    ],
+                    "output" : "antlr-written-language"
+                }
+            ]
+
+        }
+    ],
+    "output": {
+        "title-of-page": "$title-of-page",
+        "antlr" :{
+            "written-in" : "$antlr-written-language"
+        }
+    }
+}

@@ -1,0 +1,98 @@
+{
+    "metadata": {
+        "version": "0",
+        "schema": "json",
+        "async": false
+    },
+    "parsers": [
+        {
+            "name": "parser-name",
+            "depends-on": [
+                "another-parser-name"
+            ],
+            "url": "main-url",
+            "headers": {
+                "header1-name": "header1-value"
+            },
+            "selectors": [
+                {
+                    "type": "css",
+                    "selector": "#Id",
+                    "selector-refinements": [
+                        {
+                            "type": "parent",
+                            "extra": {
+                                "selector": ".selector"
+                            }
+                        },
+                        {
+                            "type": "child",
+                            "extra": {
+                                "index": 0
+                            }
+                        },
+                        {
+                            "type": "next-sibling",
+                            "extra": {
+                                "selector": ".selector"
+                            }
+                        },
+                        {
+                            "type": "previous-sibling",
+                            "extra": {
+                                "selector": ".selector"
+                            }
+                        },
+                        {
+                            "type": "find",
+                            "extra": {
+                                "selector": ".selector"
+                            }
+                        },
+                        {
+                            "type": "index",
+                            "extra": {
+                                "value": 0
+                            }
+                        },
+                        {
+                            "type": "attr",
+                            "extra": {
+                                "selector": "attr"
+                            }
+                        }
+                    ],
+                    "transformations": [
+                        {
+                            "type": "text"
+                        },
+                        {
+                            "type": "to-lower"
+                        },
+                        {
+                            "type": "to-upper"
+                        },
+                        {
+                            "type": "decorate",
+                            "extra": {
+                                "value": "Prefix $s sufix"
+                            }
+                        },
+                        {
+                            "type" : "regexp-replacement",
+                            "extra": {
+                                "delimiter": "/",
+                                "regexp": "regexp",
+                                "replacement": "replacement"
+                            }
+                        }
+                    ],
+                    "output": "variable-name-to-be-output"
+                }
+            ]
+        }
+    ],
+    "output": {
+        "desired-output-name": "$variable-name-to-be-output"
+    }
+}
