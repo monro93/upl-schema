@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://universal-parsing-language.org/schema/json/v0/metadata.schema.json",
+    "title": "Metadata",
+    "description": "Metadata of an UPL configuration",
+    "properties": {
+        "schema": {
+            "type": "string",
+            "description": "URL to the schema definition"
+        }
+    },
+    "required": [
+        "schema"
+    ]
+}

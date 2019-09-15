@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://universal-parsing-language.org/schema/json/v0/upl-config.schema.json",
+    "title": "UPL Configuration",
+    "description": "An UPL parsers definition configuration",
+    "type": "object",
+    "properties": {
+        "metadata": {
+            "type": "object",
+            "$ref": "https://universal-parsing-language.org/schema/json/v0/metadata.schema.json"
+        },
+        "parsers": {
+            "type": "array",
+            "items": {
+                "$ref": "https://universal-parsing-language.org/parser.schema.json"
+            }
+        },
+        "output": {
+            "type": "object",
+            "description": "Object describing the output of the parser. Free format."
+        }
+    },
+    "required": [
+        "metadata",
+        "parsers",
+        "output"
+    ]
+}

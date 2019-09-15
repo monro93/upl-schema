@@ -1,14 +1,13 @@
 {
     "metadata": {
-        "version": "0",
-        "schema": "json"
+        "schema": "https://universal-parsing-language.org/schema/json/v0/upl-config.schema.json"
     },
     "parsers": [
         {
             "name": "wikipedia-parsing",
             "url": "https://en.wikipedia.org/wiki/Parsing",
             "headers": {
-                "accept": "text/html,application/xhtml+xml,application/xml"
+                "Accept": "text/html,application/xhtml+xml,application/xml"
             },
             "selectors": [
                 {

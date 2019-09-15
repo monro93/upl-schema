@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://universal-parsing-language.org/schema/json/v0/selector-transformation.schema.json",
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "text",
+                "to-lower",
+                "to-upper",
+                "decorate",
+                "regexp-replacement"
+            ]
+        },
+        "extra": {
+            "type": "object",
+            "description": "Values needed to apply the transformation for the desired type."
+        }
+    },
+    "required": [
+        "type"
+    ]
+}
