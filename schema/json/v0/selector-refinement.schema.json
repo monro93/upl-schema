@@ -22,6 +22,65 @@
             "description": "Values needed to apply the desired refinement"
         }
     },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "enum": [
+                            "parent",
+                            "child",
+                            "next-sibling",
+                            "previous-sibling",
+                            "attr"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "extra": {
+                        "type": "object",
+                        "properties": {
+                            "selector": {
+                                "type": "string",
+                                "pattern": ".+",
+                                "description": "Selector to filter"
+                            }
+                        },
+                        "required": [
+                            "selector"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "index"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "extra": {
+                        "type": "object",
+                        "properties": {
+                            "index": {
+                                "type": "integer",
+                                "description": "Index of the array to be taken"
+                            }
+                        },
+                        "required": [
+                            "index"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
     "required": [
         "type",
         "extra"

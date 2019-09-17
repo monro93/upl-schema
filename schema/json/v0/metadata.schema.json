@@ -6,7 +6,8 @@
     "properties": {
         "schema": {
             "type": "string",
-            "description": "URL to the schema definition"
+            "description": "URL to the schema definition",
+            "pattern": "https://universal-parsing-language.org/schema/json/v[^/]+/upl-config.schema.json"
         }
     },
     "required": [

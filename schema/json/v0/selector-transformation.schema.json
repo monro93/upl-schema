@@ -17,6 +17,76 @@
             "description": "Values needed to apply the transformation for the desired type."
         }
     },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "decorate"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "extra": {
+                        "type": "object",
+                        "properties": {
+                            "value": {
+                                "type": "string",
+                                "pattern": "\\$s"
+                            }
+                        },
+                        "required": [
+                            "value"
+                        ]
+                    }
+                },
+                "required": [
+                    "type",
+                    "extra"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "regexp-replacement"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "extra": {
+                        "type": "object",
+                        "properties": {
+                            "delimiter": {
+                                "type": "string",
+                                "description": "Delimiter to be used, useful to avoid to scape characters depending of your regexp. Default '/'",
+                                "pattern": "^.$"
+                            },
+                            "regexp": {
+                                "type": "string",
+                                "description": "A valid regexp without delimiters"
+                            },
+                            "replacement": {
+                                "type": "string",
+                                "description": "Replacement to apply to the full match of the regexp. Use $ followed by an integer to use this capture group on the final result"
+                            }
+                        },
+                        "required": [
+                            "regexp",
+                            "replacement"
+                        ]
+                    }
+                },
+                "required": [
+                    "type",
+                    "extra"
+                ]
+            }
+        }
+    ],
     "required": [
         "type"
     ]
