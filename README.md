@@ -10,3 +10,6 @@ Mantras:
 
 ## What is this project about?
 This project is designed to define the schema used in UPL and documentation about it.
+
+## Schemas
+Check the current version json schema [here](./schema/json/v0/upl-config.schema.json) 
